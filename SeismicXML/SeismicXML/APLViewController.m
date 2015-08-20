@@ -81,7 +81,7 @@
      IMPORTANT! The main thread of the application should never be blocked!
      Also, avoid synchronous network access on any thread.
      */
-    static NSString *feedURLString = @"https://raw.githubusercontent.com/binhho/earthquake-visualisation/master/7day-M2.5.xml";
+    static NSString *feedURLString = @"https://raw.githubusercontent.com/binhho/apple-ios-samples/master/SeismicXML/SeismicXML%20Tests/7day-M2.5.xml";
     NSURLRequest *earthquakeURLRequest =
     [NSURLRequest requestWithURL:[NSURL URLWithString:feedURLString]];
     
