@@ -1,7 +1,7 @@
 /*
-     File: APLParseOperation.h
+ File: APLParseOperation.h
  Abstract: The NSOperation class used to perform the XML parsing of earthquake data.
-  Version: 3.5
+ Version: 3.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -51,11 +51,17 @@ extern NSString *kEarthquakeResultsKey;
 extern NSString *kEarthquakesErrorNotificationName;
 extern NSString *kEarthquakesMessageErrorKey;
 
+@class APLParseOperation;
+@protocol APLParseOperationDelegate <NSObject>
+
+- (void)parseOperationDidFinished:(APLParseOperation*)parseOperation;
+@end
 
 @interface APLParseOperation : NSOperation
 
 @property (copy, readonly) NSData *earthquakeData;
-
+@property (nonatomic) NSMutableArray *earthquakeList;
+@property (nonatomic,weak) id<APLParseOperationDelegate> delegate;
 - (id)initWithData:(NSData *)parseData;
 
 @end

@@ -1,7 +1,7 @@
 /*
-     File: APLParseOperation.m
+ File: APLParseOperation.m
  Abstract: The NSOperation class used to perform the XML parsing of earthquake data.
-  Version: 3.5
+ Version: 3.5
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -73,7 +73,7 @@ NSString *kEarthquakesMessageErrorKey = @"EarthquakesMsgErrorKey";
 @implementation APLParseOperation
 {
     NSDateFormatter *_dateFormatter;
-
+    
     BOOL _accumulatingParsedCharacterData;
     BOOL _didAbortParsing;
     NSUInteger _parsedEarthquakesCounter;
@@ -90,9 +90,10 @@ NSString *kEarthquakesMessageErrorKey = @"EarthquakesMsgErrorKey";
         [_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
         [_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
         [_dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
-
+        
         _currentParseBatch = [[NSMutableArray alloc] init];
         _currentParsedCharacterData = [[NSMutableString alloc] init];
+        self.earthquakeList = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -101,7 +102,7 @@ NSString *kEarthquakesMessageErrorKey = @"EarthquakesMsgErrorKey";
 - (void)addEarthquakesToList:(NSArray *)earthquakes {
     
     assert([NSThread isMainThread]);
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAddEarthquakesNotificationName object:self userInfo:@{kEarthquakeResultsKey: earthquakes}]; 
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddEarthquakesNotificationName object:self userInfo:@{kEarthquakeResultsKey: earthquakes}];
 }
 
 
@@ -129,7 +130,7 @@ NSString *kEarthquakesMessageErrorKey = @"EarthquakesMsgErrorKey";
 /*
  Limit the number of parsed earthquakes to 50 (a given day may have more than 50 earthquakes around the world, so we only take the first 50).
  */
-static const NSUInteger kMaximumNumberOfEarthquakesToParse = 50;
+static const NSUInteger kMaximumNumberOfEarthquakesToParse = 500;
 
 /*
  When an Earthquake object has been fully constructed, it must be passed to the main thread and the table view in RootViewController must be reloaded to display it. It is not efficient to do this for every Earthquake object - the overhead in communicating between the threads and reloading the table exceed the benefit to the user. Instead, we pass the objects in batches, sized by the constant below. In your application, the optimal batch size will vary depending on the amount of data in the object and other factors, as appropriate.
@@ -142,7 +143,7 @@ static NSString * const kLinkElementName = @"link";
 static NSString * const kTitleElementName = @"title";
 static NSString * const kUpdatedElementName = @"updated";
 static NSString * const kGeoRSSPointElementName = @"georss:point";
-
+static NSString * const kFeedElementName = @"feed";
 
 #pragma mark - NSXMLParser delegate methods
 
@@ -181,11 +182,12 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
     if ([elementName isEqualToString:kEntryElementName]) {
-    
+        
         [self.currentParseBatch addObject:self.currentEarthquakeObject];
         _parsedEarthquakesCounter++;
         if ([self.currentParseBatch count] >= kSizeOfEarthquakeBatch) {
             [self performSelectorOnMainThread:@selector(addEarthquakesToList:) withObject:self.currentParseBatch waitUntilDone:NO];
+            [self.earthquakeList addObjectsFromArray:self.currentParseBatch];
             self.currentParseBatch = [NSMutableArray array];
         }
     }
@@ -194,7 +196,7 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
          The title element contains the magnitude and location in the following format:
          <title>M 3.6, Virgin Islands region<title/>
          Extract the magnitude and the location using a scanner:
-        */
+         */
         NSScanner *scanner = [NSScanner scannerWithString:self.currentParsedCharacterData];
         // Scan past the "M " before the magnitude.
         if ([scanner scanString:@"M " intoString:NULL]) {
@@ -235,6 +237,9 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
             }
         }
     }
+    else if ([elementName isEqualToString:kFeedElementName]) {
+        [self.delegate parseOperationDidFinished:self];
+    }
     // Stop accumulating parsed character data. We won't start again until specific elements begin.
     _accumulatingParsedCharacterData = NO;
 }
@@ -243,7 +248,7 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
  This method is called by the parser when it find parsed character data ("PCDATA") in an element. The parser is not guaranteed to deliver all of the parsed character data for an element in a single invocation, so it is necessary to accumulate character data until the end of the element is reached.
  */
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-
+    
     if (_accumulatingParsedCharacterData) {
         // If the current element is one whose content we care about, append 'string'
         // to the property that holds the content of the current element.
@@ -252,11 +257,11 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
     }
 }
 
-/** 
+/**
  An error occurred while parsing the earthquake data: post the error as an NSNotification to our app delegate.
- */ 
+ */
 - (void)handleEarthquakesError:(NSError *)parseError {
-
+    
     assert([NSThread isMainThread]);
     [[NSNotificationCenter defaultCenter] postNotificationName:kEarthquakesErrorNotificationName object:self userInfo:@{kEarthquakesMessageErrorKey: parseError}];
 }
@@ -266,7 +271,7 @@ static NSString * const kGeoRSSPointElementName = @"georss:point";
  (Note: don't report an error if we aborted the parse due to a max limit of earthquakes.)
  */
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-     
+    
     if ([parseError code] != NSXMLParserDelegateAbortedParseError && !_didAbortParsing) {
         [self performSelectorOnMainThread:@selector(handleEarthquakesError:) withObject:parseError waitUntilDone:NO];
     }

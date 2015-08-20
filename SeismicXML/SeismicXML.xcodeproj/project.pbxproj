@@ -26,7 +26,19 @@
 		28FB23A61715BFCF0000C69F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28FB23A51715BFCF0000C69F /* Default-568h@2x.png */; };
 		28FB23A91715BFCF0000C69F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28FB23A71715BFCF0000C69F /* MainStoryboard.storyboard */; };
 		28FB23AC1715BFCF0000C69F /* APLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FB23AB1715BFCF0000C69F /* APLViewController.m */; };
+		5E6DE4D71B858F3300CC6D2C /* SeismicXML_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6DE4D61B858F3300CC6D2C /* SeismicXML_Tests.m */; };
+		5E6DE4DE1B85903D00CC6D2C /* 7day-M2.5.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5E6DE4DD1B85903D00CC6D2C /* 7day-M2.5.xml */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E6DE4D81B858F3300CC6D2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28FB23841715BFCF0000C69F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28FB238B1715BFCF0000C69F;
+			remoteInfo = SeismicXML;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		280394E11715C23500C034E3 /* APLEarthquake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APLEarthquake.h; sourceTree = "<group>"; };
@@ -57,6 +69,10 @@
 		28FB23A81715BFCF0000C69F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		28FB23AA1715BFCF0000C69F /* APLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLViewController.h; sourceTree = "<group>"; };
 		28FB23AB1715BFCF0000C69F /* APLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLViewController.m; sourceTree = "<group>"; };
+		5E6DE4D21B858F3300CC6D2C /* SeismicXML Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SeismicXML Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E6DE4D51B858F3300CC6D2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E6DE4D61B858F3300CC6D2C /* SeismicXML_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeismicXML_Tests.m; sourceTree = "<group>"; };
+		5E6DE4DD1B85903D00CC6D2C /* 7day-M2.5.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "7day-M2.5.xml"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +84,13 @@
 				28FB23901715BFCF0000C69F /* UIKit.framework in Frameworks */,
 				28FB23921715BFCF0000C69F /* Foundation.framework in Frameworks */,
 				28FB23941715BFCF0000C69F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E6DE4CF1B858F3300CC6D2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +113,7 @@
 			children = (
 				286578BE1715CA10001A69FB /* ReadMe.txt */,
 				28FB23951715BFCF0000C69F /* SeismicXML */,
+				5E6DE4D31B858F3300CC6D2C /* SeismicXML Tests */,
 				28FB238E1715BFCF0000C69F /* Frameworks */,
 				28FB238D1715BFCF0000C69F /* Products */,
 			);
@@ -99,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				28FB238C1715BFCF0000C69F /* SeismicXML.app */,
+				5E6DE4D21B858F3300CC6D2C /* SeismicXML Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +173,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5E6DE4D31B858F3300CC6D2C /* SeismicXML Tests */ = {
+			isa = PBXGroup;
+			children = (
+				5E6DE4D61B858F3300CC6D2C /* SeismicXML_Tests.m */,
+				5E6DE4D41B858F3300CC6D2C /* Supporting Files */,
+			);
+			path = "SeismicXML Tests";
+			sourceTree = "<group>";
+		};
+		5E6DE4D41B858F3300CC6D2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5E6DE4DD1B85903D00CC6D2C /* 7day-M2.5.xml */,
+				5E6DE4D51B858F3300CC6D2C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +211,24 @@
 			productReference = 28FB238C1715BFCF0000C69F /* SeismicXML.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5E6DE4D11B858F3300CC6D2C /* SeismicXML Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E6DE4DC1B858F3300CC6D2C /* Build configuration list for PBXNativeTarget "SeismicXML Tests" */;
+			buildPhases = (
+				5E6DE4CE1B858F3300CC6D2C /* Sources */,
+				5E6DE4CF1B858F3300CC6D2C /* Frameworks */,
+				5E6DE4D01B858F3300CC6D2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5E6DE4D91B858F3300CC6D2C /* PBXTargetDependency */,
+			);
+			name = "SeismicXML Tests";
+			productName = "SeismicXML Tests";
+			productReference = 5E6DE4D21B858F3300CC6D2C /* SeismicXML Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -177,6 +238,12 @@
 				CLASSPREFIX = APL;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Apple Inc.";
+				TargetAttributes = {
+					5E6DE4D11B858F3300CC6D2C = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 28FB238B1715BFCF0000C69F;
+					};
+				};
 			};
 			buildConfigurationList = 28FB23871715BFCF0000C69F /* Build configuration list for PBXProject "SeismicXML" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -191,6 +258,7 @@
 			projectRoot = "";
 			targets = (
 				28FB238B1715BFCF0000C69F /* SeismicXML */,
+				5E6DE4D11B858F3300CC6D2C /* SeismicXML Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +280,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5E6DE4D01B858F3300CC6D2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6DE4DE1B85903D00CC6D2C /* 7day-M2.5.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -228,7 +304,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5E6DE4CE1B858F3300CC6D2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E6DE4D71B858F3300CC6D2C /* SeismicXML_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E6DE4D91B858F3300CC6D2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28FB238B1715BFCF0000C69F /* SeismicXML */;
+			targetProxy = 5E6DE4D81B858F3300CC6D2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		28FB23981715BFCF0000C69F /* InfoPlist.strings */ = {
@@ -345,6 +437,72 @@
 			};
 			name = Release;
 		};
+		5E6DE4DA1B858F3300CC6D2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SeismicXML Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeismicXML.app/SeismicXML";
+			};
+			name = Debug;
+		};
+		5E6DE4DB1B858F3300CC6D2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "SeismicXML Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeismicXML.app/SeismicXML";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -365,6 +523,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5E6DE4DC1B858F3300CC6D2C /* Build configuration list for PBXNativeTarget "SeismicXML Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E6DE4DA1B858F3300CC6D2C /* Debug */,
+				5E6DE4DB1B858F3300CC6D2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
